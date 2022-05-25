@@ -57,9 +57,9 @@ FUNCTION DB_Open%% (CreateIfMissing AS _BYTE)
 
 END FUNCTION
 
-FUNCTION DB_LastInsetedRowID& ()
+FUNCTION DB_LastInsertedRowID& ()
     dbOBJ.ErrMsg = "" '--- clear last error message
-    DB_LastInsetedRowID = sqlite3_last_insert_rowid(dbOBJ.hSqliteDB)
+    DB_LastInsertedRowID = sqlite3_last_insert_rowid(dbOBJ.hSqliteDB)
 END FUNCTION
 
 FUNCTION DB_AffectedRows& ()

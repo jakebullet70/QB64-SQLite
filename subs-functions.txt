@@ -7,7 +7,7 @@ FUNCTION DB_Open%% (CreateIfMissing AS _BYTE)
 SUB DB_Close ()
 
 '--- return primary key of last inserted record
-FUNCTION DB_LastInsetedRowID& ()
+FUNCTION DB_LastInsertedRowID& ()
 
 '--- return number of rows the last query affected
 FUNCTION DB_AffectedRows& ()

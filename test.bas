@@ -1,3 +1,8 @@
+'======================================================================================
+' QB64 SQLite routines - May of 2022
+'
+' (c)sadLogic 2022   (c)All of humankind    Written in occupied Kherson, Ukraine
+'======================================================================================
 $DEBUG
 OPTION _EXPLICIT
 $CONSOLE:ONLY
@@ -8,16 +13,9 @@ _CONSOLETITLE "SQLite Test"
 '--- https://www.sqlite.org/index.html
 
 
-'--- include me at the top
+'--- include me at the top ------
 '$Include: 'sqlite.bi'
-
-
-'======================================================================================
-' QB64 SQLite routines - May of 2022
-'
-' (c)sadLogic 2022   (c)All of humankind    Written in occupied Kherson, Ukraine
-'======================================================================================
-
+'--------------------------------
 
 DIM sql$, row AS LONG, x AS LONG
 CLS
@@ -57,14 +55,14 @@ PRINT
 '--- Run a Query that returns nothing - sub style
 sql$ = "INSERT INTO persons (FirstName,LastName,City) VALUES ('Jeff','Smith','Kherson');"
 DB_ExecNonQuery sql$
-IF NOT LEN(DB_GetErrMsg) THEN PRINT "Inserted record - PKey is: "; DB_LastInsetedRowID
+IF NOT LEN(DB_GetErrMsg) THEN PRINT "Inserted record - PKey is: "; DB_LastInsertedRowID
 PRINT
 
 
 '--- Run a Query that returns nothing - Function style
 sql$ = "INSERT INTO persons (FirstName,LastName,City) VALUES ('?#','?#','?#');"
 IF DB_ExecNonQuery(DB_SqlParse(sql$, "Scott?#Smith?#Odesa")) THEN
-    PRINT "Inserted record - PKey is: "; DB_LastInsetedRowID
+    PRINT "Inserted record - PKey is: "; DB_LastInsertedRowID
 END IF
 PRINT
 
@@ -115,6 +113,6 @@ END
 '=====================================================================
 
 
-'--- include me at the bottom
+'--- include me at the bottom ----
 '$include: 'sqlite.bas'
-
+'---------------------------------
