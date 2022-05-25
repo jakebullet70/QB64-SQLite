@@ -43,9 +43,12 @@ DB_ExecNonQuery&(sql_command AS STRING)
 - Helper function to build SQL statements
 DB_SqlParse$(sql_str$, values_str$)
 
+
+
 #### Thanks to
 - Guys and gals at [SQLite](https://www.sqlite.org/index.html/)
 - The QB64 boys doing the [Phoenix Edition](https://qb64phoenix.com/) 
 - Butt head #1, you know who you are...
-- 
+
+
 
