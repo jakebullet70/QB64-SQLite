@@ -48,6 +48,7 @@ DB_SqlParse$(sql_str AS STRING, values_str AS STRING)
 #### Thanks to
 - Guys and gals at [SQLite](https://www.sqlite.org/index.html/) 
 - The QB64 boys doing the [Phoenix Edition](https://qb64phoenix.com/) 
+- @Spriggsy for the POC app
 - Butt head #1, you know who you are... 
 
 
