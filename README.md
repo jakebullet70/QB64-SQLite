@@ -41,7 +41,7 @@ DB_ExecNonQuery sql_command AS STRING
 DB_ExecNonQuery&(sql_command AS STRING)   
 
 - Helper function to build SQL statements   
-DB_SqlParse$(sql_str$, values_str$)   
+DB_SqlParse$(sql_str AS STRING, values_str AS STRING)   
 
 See test.bas for example code  
 
