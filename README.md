@@ -8,7 +8,7 @@ Written in / for QB64
 DB_Open CreateIfMissing AS _BYTE  
 DB_Open%% (CreateIfMissing AS _BYTE)  
 
-- Close a database 
+- Close a database  
 DB_Close  
 
 - Return primary key of last inserted record  
