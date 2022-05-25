@@ -5,8 +5,8 @@ Written in / for QB64
 ### Subs / Functions ✨
 
 - Open a sqlite DB  
-DB_Open  CreateIfMissing AS _BYTE  
-DB_Open%% (CreateIfMissing AS _BYTE)  
+DB_Open  CreateIfMissing  
+DB_Open%%(CreateIfMissing AS _BYTE)  
 
 - Close a database  
 DB_Close  
@@ -30,7 +30,7 @@ DB_ColCount&(RS() AS SQLITE_RESULTSET)
 DB_GetField$(RS() AS SQLITE_RESULTSET, Row AS LONG, FieldName AS STRING)  
 
 - Use for Scalar functions, returning a single value   
-DB_ExecQuerySingleResult$ (sql_command AS STRING)  
+DB_ExecQuerySingleResult$(sql_command AS STRING)  
 
 - Execute a SQL query and return a recordset  
 DB_ExecQuery sql_command AS STRING, RS() AS SQLITE_RESULTSET  
