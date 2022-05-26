@@ -5,8 +5,8 @@ Written in / for QB64
 ### Subs / Functions ✨
 
 - Open a sqlite DB  
-DB_Open  CreateIfMissing  
-DB_Open%%(CreateIfMissing AS _BYTE)  
+DB_Open  dbName AS STRING, CreateIfMissing  AS _BYTE 
+DB_Open%%(dbName AS STRING, CreateIfMissing AS _BYTE)  
 
 - Close a database  
 DB_Close  

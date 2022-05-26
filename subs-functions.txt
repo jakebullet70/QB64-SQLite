@@ -1,7 +1,7 @@
 
 '--- open a sqlite DB
-SUB DB_Open (CreateIfMissing AS _BYTE)
-FUNCTION DB_Open%% (CreateIfMissing AS _BYTE)
+SUB DB_Open (dbName AS STRING, CreateIfMissing AS _BYTE)
+FUNCTION DB_Open%% (dbName AS STRING, CreateIfMissing AS _BYTE)
 
 '--- close a database
 SUB DB_Close ()
