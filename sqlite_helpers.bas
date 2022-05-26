@@ -1,11 +1,21 @@
 '======================================================================================
-' QB64 SQLite helper routines - May of 2022  
+' QB64 SQLite helper routines - May of 2022
 ' Not sure where I found some of this code but thanks to all
 '
 ' (c)sadLogic 2022   (c)All of humankind    Written in occupied Kherson, Ukraine
 '======================================================================================
 
+FUNCTION CreateCstrX$ (txt$)
 
+    '--- create c style string
+
+    IF RIGHT$(txt$, 1) = CHR$(0) THEN
+        CreateCstrX$ = txt$ + CHR$(0)
+    ELSE
+        CreateCstrX$ = txt$
+    END IF
+
+END FUNCTION
 
 FUNCTION strReplaceOneX$ (myString$, find$, replaceWith$) 'noncase sensitive
 
