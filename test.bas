@@ -22,12 +22,10 @@ CLS
 PRINT "** SQLite testing **"
 
 
-'--- set db name and open
-dbOBJ.dbName = "NorthWind.db3"
+'--- open DB
+DB_Open "NorthWind.db3", (NOT SQLITE_CREATE_IF_MISSING) '--- will set an error if DB is missing
 
-DB_Open (NOT SQLITE_CREATE_IF_MISSING) '--- will fail id DB is missing
-'DB_Open SQLITE_CREATE_IF_MISSING '--- this will create DB if needed
-
+'DB_Open "NorthWind.db3", SQLITE_CREATE_IF_MISSING '--- this will create DB if needed
 IF LEN(DB_GetErrMsg) <> 0 THEN
     PRINT DB_GetErrMsg
     END

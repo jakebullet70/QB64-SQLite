@@ -1,8 +1,11 @@
 '======================================================================================
-' QB64 SQLite routines - May of 2022  
+' QB64 SQLite routines - May of 2022
 '
 ' (c)sadLogic 2022   (c)All of humankind    Written in occupied Kherson, Ukraine
 '======================================================================================
+
+'--- UNREM when editing
+'''''$Include: 'sqlite.bi'
 
 '$Include: 'sqlite_helpers.bas'
 
@@ -24,20 +27,22 @@ DECLARE DYNAMIC LIBRARY "sqlite3"
 END DECLARE
 
 
-SUB DB_Open (CreateIfMissing AS _BYTE)
+SUB DB_Open (db AS STRING, CreateIfMissing AS _BYTE)
 
     '--- just call the function and dump the return value
     '--- db.ErrMsg will be set if there is an error
 
     DIM junk AS _BYTE
-    junk = DB_Open(CreateIfMissing)
+    junk = DB_Open(db, CreateIfMissing)
 
 END SUB
 
 
-FUNCTION DB_Open%% (CreateIfMissing AS _BYTE)
+FUNCTION DB_Open%% (db AS STRING, CreateIfMissing AS _BYTE)
 
     dbOBJ.ErrMsg = "" '--- clear err message
+
+    dbOBJ.dbName = CreateCstrX$(db) '--- set db name
 
     IF NOT _FILEEXISTS(dbOBJ.dbName) AND CreateIfMissing = 0 THEN
         dbOBJ.ErrMsg = "SQLite DB file not found"
@@ -164,7 +169,9 @@ FUNCTION DB_ExecQuery& (sql_command AS STRING, RS() AS SQLITE_RESULTSET)
 
     IF retVal = SQLITE_OK THEN
 
-        DIM AS LONG colCount: colCount = sqlite3_column_count(dbOBJ.hSqliteStmt)
+    DIM AS LONG colCount: colCount = _
+        sqlite3_column_count(dbOBJ.hSqliteStmt)
+
         DIM AS LONG column, row, ret, tmpCol
 
         ret = sqlite3_step(dbOBJ.hSqliteStmt)
@@ -231,7 +238,7 @@ FUNCTION DB_ExecNonQuery& (sql_command AS STRING)
 
     DIM retOK AS LONG
     retOK = sqlite3_prepare(dbOBJ.hSqliteDB, sql_command, _
-                    LEN(sql_command), _OFFSET(dbOBJ.hSqliteStmt), 0)
+        LEN(sql_command), _OFFSET(dbOBJ.hSqliteStmt), 0)
 
     IF retOK = SQLITE_OK THEN
 
