@@ -5,33 +5,33 @@
 ' (c)sadLogic 2022   (c)All of humankind    Written in occupied Kherson, Ukraine
 '======================================================================================
 
-FUNCTION CreateCstrX$ (txt$)
+Function CreateCstrX$ (txt$)
 
     '--- create c style string
 
-    IF RIGHT$(txt$, 1) = CHR$(0) THEN
-        CreateCstrX$ = txt$ + CHR$(0)
-    ELSE
+    If Right$(txt$, 1) <> Chr$(0) Then
+        CreateCstrX$ = txt$ + Chr$(0)
+    Else
         CreateCstrX$ = txt$
-    END IF
+    End If
 
-END FUNCTION
+End Function
 
-FUNCTION strReplaceOneX$ (myString$, find$, replaceWith$) 'noncase sensitive
+Function strReplaceOneX$ (myString$, find$, replaceWith$) 'noncase sensitive
 
-    DIM a$, b$
-    DIM AS LONG i
+    Dim a$, b$
+    Dim As Long i
 
     a$ = myString$
-    b$ = LCASE$(find$)
+    b$ = LCase$(find$)
 
-    i = INSTR(LCASE$(a$), b$)
-    DO WHILE i
-        a$ = LEFT$(a$, i - 1) + replaceWith$ + RIGHT$(a$, LEN(a$) - i - LEN(b$) + 1)
-        EXIT DO '--- only replace the 1st one found
-    LOOP
+    i = InStr(LCase$(a$), b$)
+    Do While i
+        a$ = Left$(a$, i - 1) + replaceWith$ + Right$(a$, Len(a$) - i - Len(b$) + 1)
+        Exit Do '--- only replace the 1st one found
+    Loop
     strReplaceOneX$ = a$
-END FUNCTION
+End Function
 
 
 
@@ -39,20 +39,20 @@ END FUNCTION
 'an array of N+1 strings using the LBOUND of the given dynamic array to load.
 'notes: the loadMeArray() needs to be dynamic string array and will
 'not change the LBOUND of the array it is given.
-SUB strSplitX (SplitMeString AS STRING, delim AS STRING, loadMeArray() AS STRING)
-    DIM curpos AS LONG, arrpos AS LONG, LD AS LONG, dpos AS LONG 'fix use the Lbound the array already has
-    curpos = 1: arrpos = LBOUND(loadMeArray): LD = LEN(delim)
-    dpos = INSTR(curpos, SplitMeString, delim)
-    DO UNTIL dpos = 0
-        loadMeArray(arrpos) = MID$(SplitMeString, curpos, dpos - curpos)
+Sub strSplitX (SplitMeString As String, delim As String, loadMeArray() As String)
+    Dim curpos As Long, arrpos As Long, LD As Long, dpos As Long 'fix use the Lbound the array already has
+    curpos = 1: arrpos = LBound(loadMeArray): LD = Len(delim)
+    dpos = InStr(curpos, SplitMeString, delim)
+    Do Until dpos = 0
+        loadMeArray(arrpos) = Mid$(SplitMeString, curpos, dpos - curpos)
         arrpos = arrpos + 1
-        IF arrpos > UBOUND(loadMeArray) THEN REDIM _PRESERVE loadMeArray(LBOUND(loadMeArray) TO UBOUND(loadMeArray) + 1000) AS STRING
+        If arrpos > UBound(loadMeArray) Then ReDim _Preserve loadMeArray(LBound(loadMeArray) To UBound(loadMeArray) + 1000) As String
         curpos = dpos + LD
-        dpos = INSTR(curpos, SplitMeString, delim)
-    LOOP
-    loadMeArray(arrpos) = MID$(SplitMeString, curpos)
-    REDIM _PRESERVE loadMeArray(LBOUND(loadMeArray) TO arrpos) AS STRING 'get the ubound correct
-END SUB
+        dpos = InStr(curpos, SplitMeString, delim)
+    Loop
+    loadMeArray(arrpos) = Mid$(SplitMeString, curpos)
+    ReDim _Preserve loadMeArray(LBound(loadMeArray) To arrpos) As String 'get the ubound correct
+End Sub
 
 
 
